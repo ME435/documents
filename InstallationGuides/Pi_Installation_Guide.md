@@ -2,26 +2,26 @@
 
 ## Overview
 
-In general I dislike installations. I don't find them fun. They are simply **entirely necessary** to do cool things. In this class, however, I think of the installations as PART OF what we are learning. A big part of being an IoT developer is setup and installation of fun frameworks. There are many things that need to be done to setup your Raspberry Pi. This document is all about installations on your Pi 400 and your tank's Pi (and in 2024 you Pi5).
+In general I dislike installations. I don't find them fun. They are simply **entirely necessary** to do cool things. In this class, however, I think of the installations as PART OF what we are learning. A big part of being an IoT developer is setup and installation of fun frameworks. There are many things that need to be done to setup your Raspberry Pi. This document is all about installations on your Pi 400, your car's Pi, and in your Pi5.
 
-| Raspberry Pi 400 | Pi Adeept RaspTank | Raspberry Pi 5 |
+| Raspberry Pi 400 | Raspberry Pi 4b on the Freenove Car | Raspberry Pi 5 |
 | --- | --- | --- |
-| ![Raspberry Pi 400 kit box](images/pi/pi400-kit-box.png) | Traditional Raspberry Pi inside a tank | ![Raspberry Pi board](images/pi/pi-board-photo.png) |
+| ![Raspberry Pi 400 kit box](images/pi/pi400-kit-box.png) | ![Raspberry Pi 4b on the Freenove Car](images/pi/freenove-car.png) | ![Raspberry Pi board](images/pi/pi-board-photo.png) |
 | The Raspberry Pi inside a keyboard | | The latest Raspberry Pi |
 
 If you are trying to find installations for your computer see the [Computer Installation Guide](Computer_Installation_Guide.md).
 
 ### Disclaimer
 
-Your Pi 400 will often have peripherals connected, a keyboard, monitor, and mouse. Your RaspTank will typically NOT have peripherals connected. It will typically operate in headless mode, i.e. no monitor, no keyboard, no mouse. You will use tools like SSH and SFTP for remotely using the Pi (VS Code now has a sweet plugin called **Remote Development** that does both tasks). However, for **parts** of this setup even your tank's Pi WILL need peripherals for initial setup. While peripherals are needed for setup, once it auto connects to the network and you know the IP address or name, then everything will be remote (i.e. headless mode with no peripherals).
+Your Pi 400 will often have peripherals connected, a keyboard, monitor, and mouse. Your car will typically NOT have peripherals connected. It will typically operate in headless mode, i.e. no monitor, no keyboard, no mouse. You will use tools like SSH and SFTP for remotely using the Pi (VS Code now has a sweet plugin called **Remote Development** that does both tasks). However, for **parts** of this setup even your car's Pi WILL need peripherals for initial setup. While peripherals are needed for setup, once it auto connects to the network and you know the IP address or name, then everything will be remote (i.e. headless mode with no peripherals).
 
-Your tank's Pi looks like a normal Raspberry Pi hidden within the tank.
+Your car's Pi looks like a normal Raspberry Pi hidden within the car.
 
-![Annotated Raspberry Pi board](images/pi/pi-board-annotated.png)
+![Raspberry Pi board](images/pi/pi-board-photo.png)
 
-It's annoying (but still possible) to connect a monitor, keyboard, and mouse to the Pi in a built tank.
+It's annoying (but still possible) to connect a monitor, keyboard, and mouse to the Pi in a built car.
 
-So you will perform all the steps in this document twice (three times with the Pi 5), once for your Pi 400 and once for your tank's Pi (and Pi 5). I recommend you do the setup for the Pi 400 first, but you can start with whichever you prefer.
+So you will perform all the steps in this document twice (three times with the Pi 5), once for your Pi 400 and once for your car's Pi (and Pi 5). I recommend you do the setup for the Pi 400 first, but you can start with whichever you prefer.
 
 FYI before you start: if you are on campus you will connect both of your Pis (yes, Pis is the plural of Pi, not Pies) to **RHIT-OPEN**, not eduroam.
 
@@ -34,7 +34,7 @@ FYI before you start: if you are on campus you will connect both of your Pis (ye
 - [Change the hostname](#change-the-hostname-not-done-in-the-setup-wizard)
 - [Enable SSH](#enable-ssh-not-done-in-the-setup-wizard-so-do-it-now)
 - [Enable Serial Port](#enable-serial-port-not-done-in-the-setup-wizard-so-do-it-now)
-- [Enable I2C for Servos (Tank Pi only!)](#enable-i2c-for-servos-tank-pi-only)
+- [Enable I2C for Servos (Car Pi only!)](#enable-i2c-for-servos-car-pi-only)
 - [Localisation settings](#localisation-settings-probably-done-in-the-setup-wizard)
 - [Network Connection](#network-connection-probably-done-in-the-setup-wizard-just-need-to-open-this-doc-on-your-pi)
 - [EIT Registration](#eit-registration-probably-new-devices-only)
@@ -47,7 +47,7 @@ FYI before you start: if you are on campus you will connect both of your Pis (ye
 
 ## Image your micro SD cards
 
-The prior owner of your equipment probably put an OS on the micro SD card, but you will start from a clean slate (mainly for the sake of learning, but it's nice to not have the prior owner's stuff on your Pi and to get the latest Raspberry Pi OS). So first, you need to pull out the micro SD card and put a new Raspberry Pi image on that micro SD card. So this step will happen on your computer with just the micro SD card. The micro SD card is the hard drive of the Pi. It's handy that you can unplug the Pi hard drive with ease. Find your micro SD cards. The Pi 400 is probably in the Pi 400 and the tank micro SD card is in the tank. Find both micro SD cards and find the **micro**-SD card to normal-sized-SD card adapter.
+The prior owner of your equipment probably put an OS on the micro SD card, but you will start from a clean slate (mainly for the sake of learning, but it's nice to not have the prior owner's stuff on your Pi and to get the latest Raspberry Pi OS). So first, you need to pull out the micro SD card and put a new Raspberry Pi image on that micro SD card. So this step will happen on your computer with just the micro SD card. The micro SD card is the hard drive of the Pi. It's handy that you can unplug the Pi hard drive with ease. Find your micro SD cards. The Pi 400 is probably in the Pi 400 and the car micro SD card is in the car. Find both micro SD cards and find the **micro**-SD card to normal-sized-SD card adapter.
 
 - On your normal computer, download and install the Raspberry Pi Imager: https://www.raspberrypi.org/software/
 - Next insert a Micro SD card into your computer (probably via a micro SD card adapter)
@@ -55,28 +55,28 @@ The prior owner of your equipment probably put an OS on the micro SD card, but y
 - Open the Raspberry Pi imager, choose the Pi type that you plan to put this SD card into, the Recommended OS for that device, and the SD card (which should show up in the options if it does not, then you need to unplug and replug the SD card or restart your computer and try again). Then click the button (Write or Next) to **write** it.
 - I do NOT bother copying configurations from my computer. Just click No.
 
-![Raspberry Pi Imager writing progress](images/pi/raspberry-pi-imager.png)
+![Raspberry Pi Imager, select your device](images/pi/RaspberryPiImager.jpg)
 
 - It's like a 1.2 gig download (sorry about your quota limits).
-- Once complete, remove the micro SD card from your computer and insert it into your Raspberry Pi 400 (or tank Pi depending on which pass through this document you are doing).
+- Once complete, remove the micro SD card from your computer and insert it into your Raspberry Pi 400 (or car Pi depending on which pass through this document you are doing).
   - Pi 400 - The label is up, the pins are down, the metal pins on the micro SD card are on the bottom
-  - tank Pi - The label is down, the pins are up, the metal pins on the micro SD card touch the printed circuit board. (note, "up" is normal Raspberry Pi board "up" if it wasn't in a tank)
+  - car Pi - The label is down, the pins are up, the metal pins on the micro SD card touch the printed circuit board. (note, "up" is normal Raspberry Pi board "up" if it wasn't in a car)
   - Connect your peripherals before you power on the Pi.
 
 ## Connect your peripherals
 
-A Raspberry Pi is a computer. It is slower than your computer. It's a 32 bit system (at the time this document was written). And it costs like $60-$80 bucks instead of $1500+. Like any computer, you typically want peripherals (keyboard, mouse, monitor) to use the computer. When we use the tank in headless mode, we'll drop all the peripherals and use the Pi in remote development mode. However, for this setup we DO want peripherals. Connections:
+A Raspberry Pi is a computer. It is slower than your computer. It's a 32 bit system (at the time this document was written). And it costs like $60-$80 bucks instead of $1500+. Like any computer, you typically want peripherals (keyboard, mouse, monitor) to use the computer. When we use the car in headless mode, we'll drop all the peripherals and use the Pi in remote development mode. However, for this setup we DO want peripherals. Connections:
 
 - Typically, I connect all of my peripherals then turn on power last
 - Connect a monitor to your Pi using your mini HDMI cable. We provide a tiny 9" monitor that you can use, but if you have any external monitor with an HDMI plugin use that instead! The tiny 9" monitor we provide is a pain, but we can't assume you own a big external monitor and we didn't want to spend lots of money.
   - Technically, the HDMI port on the Pi should provide power to power the 9" monitor, but that is only reliable sometimes and it's usually necessary to plug it in before anything is turned on. If it fails to power the monitor, plan to power the 9" monitor via the DC mini-USB plug. You should be able to use a USB on the Pi or a powered USB connection on your computer or wall USB plug. Note, the monitor will not be a touch screen in this case, but that's ok.
 - Note: You can also use a TV as your monitor if it has an HDMI plug.
 - Connect a mouse to your Pi
-- If needed connect a keyboard to your Pi (obviously not needed for the Pi 400, only the tank Pi).
-- Connect power to your Pi (Note: for the tank, use wall power for now, not the batteries)
+- If needed connect a keyboard to your Pi (obviously not needed for the Pi 400, only the car Pi).
+- Connect power to your Pi (Note: for the car, use wall power for now, not the batteries)
   - Usually I use the PiSwitch (find that in your kit) and have it plugged in, but off initially. Using the PiSwitch cable is optional. I just added those since it feels more elegant to turn off your computer that way vs unplugging it.
 - Power things on and hope you see a screen pop up on the monitor.
-  - This step can be the most frustrating as it's easy for something to go wrong and you'll just stare at a black screen. That happens to everyone. We will help you fix it! Usually the Pi 400 just works and the tank has issues, but you never know.
+  - This step can be the most frustrating as it's easy for something to go wrong and you'll just stare at a black screen. That happens to everyone. We will help you fix it! Usually the Pi 400 just works and the car has issues, but you never know.
 - Once you have a screen displaying, start in on the setup steps.
 
 ## Setup Wizard
@@ -90,7 +90,7 @@ The OS should have a setup wizard pop up to help you with some of the typical se
 - *Install updates*: do that (warning it takes a **long** time, don't start if within 20 minutes of leaving time)
 - *Set your hostname* (*uncommon, probably won't ask*): if it asks you to set a hostname within the wizard, then great! See the hostname step below for the name to use names:
   - *username*-pi400
-  - *username*-tank
+  - *username*-car
   - *username*-pi5
 
 However, we'll talk about the process for each step as if no magic setup wizard launched for you. (It happens due to monitor issues)
@@ -102,11 +102,7 @@ In the old days, the default user on a Pi is named `pi` and the default password
 - username: `pi` ← Personally I DO use this same default username
 - password: ~~`raspberry`~~ ← Do **NOT** make this your password!
 
-All hackers know that the default password for a Raspberry Pi is the word `raspberry`. Once EIT registers a MAC address, that Raspberry Pi is no longer in Guest mode and has network privileges (discussed in a later step). Therefore, it is required that you change your password. Interestingly, it's ok if we all use the same password. I asked EIT and they said our real concern is outside attacks. So your Pi's login info could all be the same and all of us can know it (that is not a requirement, but is ok), but it can't be the default that the **whole world knows**. So I keep the username set to `pi`, but make our password: `C$$E435` (even if you are in ME435). That is a secure password and it's easy if we all use the same one for the Pi 400 and the tank Pi for troubleshooting help. It's also fine since the outside world doesn't know the password and people within the class can be trusted to only help you (right?). You probably got asked to change your password already in the setup wizard, **if you did not see a setup wizard to set your password**, you can change your password via the Menu → Preferences → Raspberry Pi Configuration (easiest) or via the command line. If you use the Raspberry Pi Configuration program it should look roughly like this (things always change over time).
-
-![Raspberry Pi Configuration, System tab](images/pi/pi-config-system-tab.png)
-
-just click the "**Change Password…**" button and follow the steps. If for any reason that program won't open (or you are using SSH or something), then use the command line, following these steps.
+All hackers know that the default password for a Raspberry Pi is the word `raspberry`. Once EIT registers a MAC address, that Raspberry Pi is no longer in Guest mode and has network privileges (discussed in a later step). Therefore, it is required that you change your password. Interestingly, it's ok if we all use the same password. I asked EIT and they said our real concern is outside attacks. So your Pi's login info could all be the same and all of us can know it (that is not a requirement, but is ok), but it can't be the default that the **whole world knows**. So I keep the username set to `pi`, but make our password: `C$$E435` (even if you are in ME435). That is a secure password and it's easy if we all use the same one for the Pi 400 and the car Pi for troubleshooting help. It's also fine since the outside world doesn't know the password and people within the class can be trusted to only help you (right?). You probably got asked to change your password already in the setup wizard, **if you did not see a setup wizard to set your password**, you can change your password via the Menu → Preferences → Raspberry Pi Configuration (easiest) or via the command line. If you use the Raspberry Pi Configuration program, go to the **System** tab and just click the "**Change Password…**" button and follow the steps. If for any reason that program won't open (or you are using SSH or something), then use the command line, following these steps.
 
 - Open a Terminal window on the Pi to use the command line and type:
 - `passwd`
@@ -115,7 +111,7 @@ just click the "**Change Password…**" button and follow the steps. If for any 
 
 Details: https://www.raspberrypi.org/documentation/linux/usage/users.md
 
-Do this for any Pi you use in this course (tank and Pi 400). It is an important step to EIT, so it needs to be an important step for you as well.
+Do this for any Pi you use in this course (car and Pi 400). It is an important step to EIT, so it needs to be an important step for you as well.
 
 ## Change the hostname (NOT done in the setup wizard)
 
@@ -126,7 +122,7 @@ Your setup wizard might not have had you set your hostname for your computer. Th
 Use this format for your two Raspberry Pi computer hostnames:
 
 - *username*-pi400
-- *username*-tank
+- *username*-car
 - *username*-pi5
 
 For example my Pi 400 is **fisherds-pi400**
@@ -155,7 +151,7 @@ Note: You will type MANY commands into the command line during this setup and th
 
 ## Enable SSH (NOT done in the setup wizard, so do it now)
 
-For security reasons SSH is disabled by default, but we need that for easy communication (especially for the tank). Again this is easiest to set in the Raspberry Pi Configuration tool (menu → Preferences → Raspberry Pi Configuration). Go to the **Interfaces** tab and **enable** in the **SSH** row. (Note, the image below looks different now, no biggy).
+For security reasons SSH is disabled by default, but we need that for easy communication (especially for the car). Again this is easiest to set in the Raspberry Pi Configuration tool (menu → Preferences → Raspberry Pi Configuration). Go to the **Interfaces** tab and **enable** in the **SSH** row. (Note, the image below looks different now, no biggy).
 
 ![Raspberry Pi Configuration, Interfaces tab, SSH enabled](images/pi/pi-config-interfaces-ssh.png)
 
@@ -165,9 +161,9 @@ If for some reason you can't launch the newest Config tool, you can use this old
 
 In the same menu as the SSH enable there is a **Serial Port** Enable. Turn that one on as well. Again this is easiest to set in the Raspberry Pi Configuration tool (menu → Preferences → Raspberry Pi Configuration). Go to the **Interfaces** tab and select enable the Serial Port row.
 
-## Enable I2C for Servos (Tank Pi only!)
+## Enable I2C for Servos (Car Pi only!)
 
-(tank Pi only) For the servos that are on the tank we'll use an external servo driver chip. We'll need to enable I2C on the tank so that we can use that chip.
+(car Pi only) For the servos that are on the car we'll use an external servo driver chip. We'll need to enable I2C on the car so that we can use that chip.
 
 ## Localisation settings (probably DONE in the setup wizard)
 
@@ -401,9 +397,9 @@ Links to other guides that we'll use on later days:
 <details>
 <summary>Older material to be deleted soon</summary>
 
-### I2C Servo library (Tank Pi only! Skip this for now!)
+### I2C Servo library (Car Pi only! Skip this for now!)
 
-(tank Pi only) For the servos that are on the tank we'll use an external servo driver chip. We'll use a library from Adafruit called servokit to communicate with their `pca9685` chip. Run...
+(car Pi only) For the servos that are on the car we'll use an external servo driver chip. We'll use a library from Adafruit called servokit to communicate with their `pca9685` chip. Run...
 
 **This command requires a Python Virtual Environment. Skip this step for now!**
 

@@ -68,7 +68,7 @@ python -m pip --version
 
 ## MQTT
 
-For Python communication from the Pi to your computer we'll use MQTT. MQTT is one of the most popular IoT communication methods. You'll need to use Pip to install MQTT on your computer and your two Pis (pi400 and the tank). It can be installed via…
+For Python communication from the Pi to your computer we'll use MQTT. MQTT is one of the most popular IoT communication methods. You'll need to use Pip to install MQTT on your computer and your two Pis (pi400 and the car). It can be installed via…
 
 ```
 pip install paho-mqtt
