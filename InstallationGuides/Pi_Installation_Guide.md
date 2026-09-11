@@ -2,28 +2,30 @@
 
 ## Overview
 
-In general I dislike installations. I don't find them fun. They are simply **entirely necessary** to do cool things. In this class, however, I think of the installations as PART OF what we are learning. A big part of being an IoT developer is setup and installation of fun frameworks. There are many things that need to be done to setup your Raspberry Pi. This document is all about installations on your Pi 400, your car's Pi, and in your Pi5.
+In general I dislike installations. I don't find them fun. They are simply **entirely necessary** to do cool things. In this class, however, I think of the installations as PART OF what we are learning. There are many things that need to be done to setup your Raspberry Pi. This document is all about installations on your Pi 400, your car's Pi, and your Pi5.
 
 | Raspberry Pi 400 | Raspberry Pi 4b on the Freenove Car | Raspberry Pi 5 |
 | --- | --- | --- |
-| ![Raspberry Pi 400 kit box](images/pi/pi400-kit-box.png) | ![Raspberry Pi 4b on the Freenove Car](images/pi/freenove-car.png) | ![Raspberry Pi board](images/pi/pi-board-photo.png) |
-| The Raspberry Pi inside a keyboard | | The latest Raspberry Pi |
+| <img src="images/pi/pi400-kit-box.png" alt="Raspberry Pi 400 kit box" height="180"> | <img src="images/pi/freenove-car.png" alt="Raspberry Pi 4b on the Freenove Car" height="180"> | <img src="images/pi/pi-board-photo.png" alt="Raspberry Pi board" height="180"> |
+| The Raspberry Pi inside a keyboard | Raspberry 4 Model B for your rover | Latest Raspberry Pi in a black case |
 
 If you are trying to find installations for your computer see the [Computer Installation Guide](Computer_Installation_Guide.md).
 
+Note: a lot of this material overlaps with the official [Raspberry Pi Getting Started guide](https://www.raspberrypi.com/documentation/computers/getting-started.html), which is worth a look too.
+
 ### Disclaimer
 
-Your Pi 400 will often have peripherals connected, a keyboard, monitor, and mouse. Your car will typically NOT have peripherals connected. It will typically operate in headless mode, i.e. no monitor, no keyboard, no mouse. You will use tools like SSH and SFTP for remotely using the Pi (VS Code now has a sweet plugin called **Remote Development** that does both tasks). However, for **parts** of this setup even your car's Pi WILL need peripherals for initial setup. While peripherals are needed for setup, once it auto connects to the network and you know the IP address or name, then everything will be remote (i.e. headless mode with no peripherals).
+Your Pi 400 will sometimes have peripherals connected, a keyboard, monitor, and mouse. However, usually a Pi typically NOT have peripherals connected. It will typically operate in headless mode, i.e. no monitor, no keyboard, no mouse. You will use tools like SSH and the VS Code plugin called **Remote Development**. However, for parts of this setup peripherals can be useful. While peripherals are helpful for setup, once each Pi auto connects to the network and you know the IP address or name, then everything will be remote (i.e. headless mode with no peripherals).
 
 Your car's Pi looks like a normal Raspberry Pi hidden within the car.
 
-![Raspberry Pi board](images/pi/pi-board-photo.png)
+<img src="images/pi/pi-board-photo.png" alt="Raspberry Pi board" width="350">
 
 It's annoying (but still possible) to connect a monitor, keyboard, and mouse to the Pi in a built car.
 
-So you will perform all the steps in this document twice (three times with the Pi 5), once for your Pi 400 and once for your car's Pi (and Pi 5). I recommend you do the setup for the Pi 400 first, but you can start with whichever you prefer.
+So you will perform all the steps in this document three times: once for your Pi 400, once for your car's Pi 4b, and once for the Pi 5. I recommend you do the setup for the Pi 400 first, but you can start with whichever you prefer.
 
-FYI before you start: if you are on campus you will connect both of your Pis (yes, Pis is the plural of Pi, not Pies) to **RHIT-OPEN**, not eduroam.
+FYI before you start: if you are on campus you will connect all of your Pis (yes, Pis is the plural of Pi, not Pies) to **RHIT-OPEN**, not eduroam.
 
 ## Table of Contents
 
@@ -47,15 +49,19 @@ FYI before you start: if you are on campus you will connect both of your Pis (ye
 
 ## Image your micro SD cards
 
-The prior owner of your equipment probably put an OS on the micro SD card, but you will start from a clean slate (mainly for the sake of learning, but it's nice to not have the prior owner's stuff on your Pi and to get the latest Raspberry Pi OS). So first, you need to pull out the micro SD card and put a new Raspberry Pi image on that micro SD card. So this step will happen on your computer with just the micro SD card. The micro SD card is the hard drive of the Pi. It's handy that you can unplug the Pi hard drive with ease. Find your micro SD cards. The Pi 400 is probably in the Pi 400 and the car micro SD card is in the car. Find both micro SD cards and find the **micro**-SD card to normal-sized-SD card adapter.
+The prior owner of your equipment probably put an OS on the micro SD card, but you will start from a clean slate and use the latest Raspberry Pi OS. So first, you need to pull out the micro SD card and put a new Raspberry Pi image on that micro SD card. So this step will happen on your computer with just the micro SD card. The micro SD card is the hard drive of the Pi. It's handy that you can unplug the Pi hard drive with ease. Find your micro SD cards. The Pi 400 is probably in the Pi 400, the car micro SD card is in the car, and the Pi 5 micro SD card is probably in the Pi 5. Find all of your micro SD cards and find the **micro**-SD card to normal-sized-SD card adapter.
 
-- On your normal computer, download and install the Raspberry Pi Imager: https://www.raspberrypi.org/software/
+<img src="images/pi/sd-card-adapter.jpg" alt="microSD to SD card adapter" width="220">
+
+<img src="images/pi/microsd-insert.png" alt="Inserting a microSD card into a Raspberry Pi" width="450">
+
+- On your normal computer, download and install the Raspberry Pi Imager: https://www.raspberrypi.com/software/
 - Next insert a Micro SD card into your computer (probably via a micro SD card adapter)
   - Hopefully your computer has an SD card slot, if not, you will need a USB SD card reader. Dr. Fisher will purchase 1 that you can borrow if needed, so far that hasn't been an issue for student laptops.
 - Open the Raspberry Pi imager, choose the Pi type that you plan to put this SD card into, the Recommended OS for that device, and the SD card (which should show up in the options if it does not, then you need to unplug and replug the SD card or restart your computer and try again). Then click the button (Write or Next) to **write** it.
 - I do NOT bother copying configurations from my computer. Just click No.
 
-![Raspberry Pi Imager, select your device](images/pi/RaspberryPiImager.jpg)
+<img src="images/pi/RaspberryPiImager.jpg" alt="Raspberry Pi Imager, select your device" width="450">
 
 - It's like a 1.2 gig download (sorry about your quota limits).
 - Once complete, remove the micro SD card from your computer and insert it into your Raspberry Pi 400 (or car Pi depending on which pass through this document you are doing).
@@ -109,17 +115,17 @@ All hackers know that the default password for a Raspberry Pi is the word `raspb
   - Current password: `raspberry` (this is the default password)
   - New password: `C$$E435`
 
-Details: https://www.raspberrypi.org/documentation/linux/usage/users.md
+Details: https://www.raspberrypi.com/documentation/computers/configuration.html#users
 
-Do this for any Pi you use in this course (car and Pi 400). It is an important step to EIT, so it needs to be an important step for you as well.
+Do this for any Pi you use in this course (Pi 400, car, and Pi 5). It is an important step to EIT, so it needs to be an important step for you as well.
 
 ## Change the hostname (NOT done in the setup wizard)
 
 Your setup wizard might not have had you set your hostname for your computer. This allows you to use a name instead of an IP address when accessing your Pi on the Rose network from your computer. You can make this change via menu → Preferences → Raspberry Pi Configuration (easiest) or via the command line.
 
-![Menu, Preferences, Raspberry Pi Configuration](images/pi/pi-config-interfaces-ssh.png)
+<img src="images/pi/pi-config-interfaces-ssh.png" alt="Menu, Preferences, Raspberry Pi Configuration" width="600">
 
-Use this format for your two Raspberry Pi computer hostnames:
+Use this format for your Raspberry Pi computer hostnames:
 
 - *username*-pi400
 - *username*-car
@@ -145,7 +151,7 @@ hostname
 
 into a Terminal window. BTW when I say to type a command line, that is done via a command line Terminal. You can open a Terminal via this icon:
 
-![Terminal icon in the taskbar](images/pi/terminal-icon.png)
+<img src="images/pi/terminal-icon.png" alt="Terminal icon in the taskbar" width="180">
 
 Note: You will type MANY commands into the command line during this setup and throughout this course. You WILL become comfortable with using the command line on a computer during this class if you are not already.
 
@@ -153,9 +159,9 @@ Note: You will type MANY commands into the command line during this setup and th
 
 For security reasons SSH is disabled by default, but we need that for easy communication (especially for the car). Again this is easiest to set in the Raspberry Pi Configuration tool (menu → Preferences → Raspberry Pi Configuration). Go to the **Interfaces** tab and **enable** in the **SSH** row. (Note, the image below looks different now, no biggy).
 
-![Raspberry Pi Configuration, Interfaces tab, SSH enabled](images/pi/pi-config-interfaces-ssh.png)
+<img src="images/pi/pi-config-interfaces-ssh.png" alt="Raspberry Pi Configuration, Interfaces tab, SSH enabled" width="600">
 
-If for some reason you can't launch the newest Config tool, you can use this old Config tool from the command line: `sudo raspi-config` For more instructions on the command line approach, visit: https://www.raspberrypi.org/documentation/remote-access/ssh/
+If for some reason you can't launch the newest Config tool, you can use this old Config tool from the command line: `sudo raspi-config` For more instructions on the command line approach, visit: https://www.raspberrypi.com/documentation/remote-access/ssh/
 
 ## Enable Serial Port (NOT done in the setup wizard, so do it now)
 
@@ -169,7 +175,7 @@ In the same menu as the SSH enable there is a **Serial Port** Enable. Turn that 
 
 If you have not already done this via a setup wizard, go set your Localisation options. Just quickly run through all four buttons in the Menu > Preferences > Raspberry Pi Configuration, Localisation tab.
 
-![Raspberry Pi Configuration, Localisation tab](images/pi/pi-config-localisation-tab.png)
+<img src="images/pi/pi-config-localisation-tab.png" alt="Raspberry Pi Configuration, Localisation tab" width="400">
 
 Just make sure you are all set for the US. Note, for my **Set Timezone...** option I picked America > **New York** instead of Indianapolis since Indiana isn't weird anymore.
 
@@ -186,7 +192,7 @@ To clarify, that first letter is a lowercase L. However, a capital I also works,
 
 If you have not already done so, connect your Pi to the internet. If you are on campus and have a good WiFi signal connect to RHIT-OPEN (if your WiFi signal is bad use an ethernet cable, uncommon). Assuming you are using WiFi, look for the networking icon in the upper right (two arrows), click it, and follow the steps to turn on WiFi and connect to RHIT-OPEN. Once complete visit https://www.rose-hulman.edu/ from Chromium.
 
-![Networking icon in the taskbar](images/pi/networking-icon.png)
+<img src="images/pi/networking-icon.png" alt="Networking icon in the taskbar" width="180">
 
 Note, since a Pi is a 32 bit computer it uses Chromium instead of Chrome. Chrome is a 64 bit only program, but Chromium is the lightweight alternative that can come in a 32 bit package.
 
@@ -212,7 +218,7 @@ ifconfig
 
 The example output of the `ifconfig` command is shown below. It highlights where you'll find the Mac address values that you care about.
 
-![ifconfig output with wired and wireless MAC addresses highlighted](images/pi/ifconfig-output.png)
+<img src="images/pi/ifconfig-output.png" alt="ifconfig output with wired and wireless MAC addresses highlighted" width="550">
 
 Your **wired** Mac address shows up in the `eth0` (Ethernet) area as the `ether` property. As you can see a MAC address has a very distinct format, for example: `dc:a6:32:d7:97:5e` You need to get that value into the spreadsheet. You can just type it (be careful if you do that). Or you can open the spreadsheet on your Pi and copy/paste the value (be careful with that too since copy/paste is weird from a terminal window). Note: Ctrl-C/Ctrl-V pretty much never work from the Pi command line, so highlight what you want with your mouse and right click to Copy. You can also try to use Shift-Ctrl-C / Shift-Ctrl-V which is supposed to work from the terminal (and "usually" does work). Then right click to paste your Mac addresses into the spreadsheet (one at a time). Then look at the value to be sure it did it right! Note: in future years, students shouldn't need to do this, but EIT seems to drop our Mac addresses periodically.
 
@@ -235,7 +241,7 @@ Note, you can still finish all of these installations in Guest mode, so just kee
 
 The main program we'll use from the Pi is the Terminal program. BTW when I say to type a command line, that is done via a command line Terminal. You can open a Terminal via this icon:
 
-![Terminal icon in the taskbar](images/pi/terminal-icon.png)
+<img src="images/pi/terminal-icon.png" alt="Terminal icon in the taskbar" width="180">
 
 Open a Terminal (command line console prompt) for the steps below.
 
@@ -243,7 +249,7 @@ Open a Terminal (command line console prompt) for the steps below.
 
 **Important Pro tip:** On your Pi, if you are using the tiny monitor, you can change the background color and font size of the Terminal window. Go into Edit → Preferences. In that area you can click the Background color to set the color to white, and you can change the font size to be like 20 Bold.
 
-![LXTerminal preferences dialog](images/pi/lxterminal-preferences.png)
+<img src="images/pi/lxterminal-preferences.png" alt="LXTerminal preferences dialog" width="600">
 
 I find when I'm using the tiny monitors that a large font on white background is much easier to see than the tiny text on a black background.
 
@@ -266,7 +272,7 @@ Pro tip: On your Pi, you can Ctrl-C from here (via Chromium) to copy, then Ctrl-
 
 In general you want to run those commands before you install anything (certainly before anything that uses an `apt-get install` command). So before you install something, ask yourself "When did I last run apt upgrade?" Staying up to date is good. I run it before I do an apt-get install (see later commands) plus about once a month.
 
-Reference: https://www.raspberrypi.org/documentation/raspbian/updating.md
+Reference: https://www.raspberrypi.com/documentation/raspbian/updating.md
 
 BTW the `-y` flag at the end of that command just automatically answers a question "yes" that you would normally be asked when running that command. It's an "Are you sure?" question. I just add the `-y` so that it doesn't bother to ask (automatically answer any silly questions with a yes) *(TODO: add link)*.
 

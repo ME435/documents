@@ -32,7 +32,7 @@ For our main text editor / IDE we'll use VS Code. VS Code is nice since it works
 
 Go ahead and open VS Code and install some extensions. Click on the Extensions icon (far left icon shown below), then search for an extension, then click Install.
 
-![VS Code Extensions panel](images/computer/vscode-extensions.png)
+<img src="images/computer/vscode-extensions.png" alt="VS Code Extensions panel" width="600">
 
 Install the following extensions:
 
@@ -68,7 +68,7 @@ python -m pip --version
 
 ## MQTT
 
-For Python communication from the Pi to your computer we'll use MQTT. MQTT is one of the most popular IoT communication methods. You'll need to use Pip to install MQTT on your computer and your two Pis (pi400 and the car). It can be installed via…
+For Python communication from the Pi to your computer we'll use MQTT. MQTT is one of the most popular IoT communication methods. You'll need to use Pip to install MQTT on your computer and your three Pis (pi400, car, and Pi 5). It can be installed via…
 
 ```
 pip install paho-mqtt

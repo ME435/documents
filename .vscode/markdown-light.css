@@ -1,0 +1,38 @@
+/* Forces the built-in Markdown preview to a light, GitHub-like look
+   regardless of your editor color theme (dark or light). */
+body.vscode-dark,
+body.vscode-high-contrast {
+  background-color: #ffffff !important;
+  color: #1f2328 !important;
+}
+
+body.vscode-dark a,
+body.vscode-high-contrast a {
+  color: #0969da !important;
+}
+
+body.vscode-dark code,
+body.vscode-dark pre,
+body.vscode-high-contrast code,
+body.vscode-high-contrast pre {
+  background-color: #f6f8fa !important;
+  color: #1f2328 !important;
+}
+
+body.vscode-dark blockquote,
+body.vscode-high-contrast blockquote {
+  color: #59636e !important;
+  border-left-color: #d1d9e0 !important;
+}
+
+body.vscode-dark table th,
+body.vscode-dark table td,
+body.vscode-high-contrast table th,
+body.vscode-high-contrast table td {
+  border-color: #d1d9e0 !important;
+}
+
+body.vscode-dark hr,
+body.vscode-high-contrast hr {
+  background-color: #d1d9e0 !important;
+}
