@@ -51,19 +51,44 @@ FYI before you start: if you are on campus you will connect all of your Pis (yes
 
 The prior owner of your equipment probably put an OS on the micro SD card, but you will start from a clean slate and use the latest Raspberry Pi OS. So first, you need to pull out the micro SD card and put a new Raspberry Pi image on that micro SD card. So this step will happen on your computer with just the micro SD card. The micro SD card is the hard drive of the Pi. It's handy that you can unplug the Pi hard drive with ease. Find your micro SD cards. The Pi 400 is probably in the Pi 400, the car micro SD card is in the car, and the Pi 5 micro SD card is probably in the Pi 5. Find all of your micro SD cards and find the **micro**-SD card to normal-sized-SD card adapter.
 
-<img src="images/pi/sd-card-adapter.jpg" alt="microSD to SD card adapter" width="220">
-
+<figure>
 <img src="images/pi/microsd-insert.png" alt="Inserting a microSD card into a Raspberry Pi" width="450">
+<figcaption>Typical SD card location on a Pi</figcaption>
+</figure>
+
+<figure>
+<img src="images/pi/sd-card-adapter.jpg" alt="microSD to SD card adapter" width="220">
+<figcaption>Micro SD card adapter to normal SD card size</figcaption>
+</figure>
 
 - On your normal computer, download and install the Raspberry Pi Imager: https://www.raspberrypi.com/software/
 - Next insert a Micro SD card into your computer (probably via a micro SD card adapter)
   - Hopefully your computer has an SD card slot, if not, you will need a USB SD card reader. Dr. Fisher will purchase 1 that you can borrow if needed, so far that hasn't been an issue for student laptops.
-- Open the Raspberry Pi imager, choose the Pi type that you plan to put this SD card into, the Recommended OS for that device, and the SD card (which should show up in the options if it does not, then you need to unplug and replug the SD card or restart your computer and try again). Then click the button (Write or Next) to **write** it.
-- I do NOT bother copying configurations from my computer. Just click No.
+- Open the Raspberry Pi Imager and step through the options:
+  - **Device** — the Pi model this card is for (Raspberry Pi 4 for the Pi 400 and the car, Raspberry Pi 5 for the Pi 5)
+  - **Operating System** — the Recommended OS for that device, 64-bit
+  - **Storage** — your micro SD card should show up in the list
+  - **Hostname** — replace *username* with **your** username (for example, Dr. Fisher's is `fisherds`)
+    - Pi 400 --> *username*-pi400
+    - car --> *username*-car
+    - Pi 5 --> *username*-pi5
+  - **Locale settings**
+    - Capital City: Washington DC
+    - Time zone: America/New_York
+    - Keyboard layout: us
+  - **Username and password**
+    - Username: `pi`
+    - Password: `C$$E435`
+    - Confirm password: `C$$E435`
+  - **Wi-Fi** — Open Network `RHIT-OPEN`
+  - **Services**
+    - Enable SSH: true (password authentication)
+    - Enable Raspberry Pi Connect: false
 
 <img src="images/pi/RaspberryPiImager.jpg" alt="Raspberry Pi Imager, select your device" width="450">
 
-- It's like a 1.2 gig download (sorry about your quota limits).
+
+- Click **Write** — it's like a 1.2 gig download (sorry about your quota limits).
 - Once complete, remove the micro SD card from your computer and insert it into your Raspberry Pi 400 (or car Pi depending on which pass through this document you are doing).
   - Pi 400 - The label is up, the pins are down, the metal pins on the micro SD card are on the bottom
   - car Pi - The label is down, the pins are up, the metal pins on the micro SD card touch the printed circuit board. (note, "up" is normal Raspberry Pi board "up" if it wasn't in a car)
