@@ -86,6 +86,19 @@ The prior owner of your equipment probably put an OS on the micro SD card, but y
   - car Pi - The label is down, the pins are up, the metal pins on the micro SD card touch the printed circuit board. (note, "up" is normal Raspberry Pi board "up" if it wasn't in a car)
   - Connect your peripherals before you power on the Pi.
 
+### Troubleshooting: "Access Denied" when you click Write
+
+Some Windows computers throw an **Access Denied** error when you click **Write** in the Imager. This usually means Windows has marked the SD card as read-only. Fix it with `diskpart`:
+
+1. Open **Command Prompt as Administrator**.
+2. Type `diskpart` and hit enter.
+3. Type `list disk` and hit enter — find your SD card in the list **by its size** (be careful to pick the right one; `clean` in step 6 permanently erases whatever disk you select).
+4. Type `select disk N` (replace `N` with your SD card's disk number from the list above).
+5. Type `attributes disk clear readonly` — this clears the read-only flag Windows set on the disk.
+6. Type `clean` — this wipes the card so the Imager can start fresh.
+
+Then go back to the Raspberry Pi Imager and try **Write** again.
+
 ## Connect your peripherals
 
 A Raspberry Pi is a computer. It is slower than your computer. It's a 32 bit system (at the time this document was written). And it costs like $60-$80 bucks instead of $1500+. Like any computer, you typically want peripherals (keyboard, mouse, monitor) to use the computer. When we use the car in headless mode, we'll drop all the peripherals and use the Pi in remote development mode. However, for this setup we DO want peripherals. Connections:
